@@ -37,4 +37,4 @@ https://github.com/hvqzao/foolav/releases/download/v1.0/foolav.zip
 
 ## License
 
-[MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
+[MIT License](LICENSE)
